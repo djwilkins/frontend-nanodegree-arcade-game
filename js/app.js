@@ -1,15 +1,11 @@
+// Defining two global variables for game state and special screen when player wins game
 const endGameScreen = document.querySelector('.modal')
-let gameOver = false;
-
-console.log(endGameScreen);
+let gameWon = false;
 
 // Enemies our player must avoid
 class Enemy {
     constructor(x,y,speed) {
-        // Variables applied to each of our instances go here,
-        // we've provided one for you to get started
-        // The image/sprite for our enemies, this uses
-        // a helper we've provided to easily load images
+        // Defining enemies location, speed and image.
         this.x = x;
         this.y = y;
         this.speed = speed;
@@ -19,36 +15,26 @@ class Enemy {
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt) {
-        if (!gameOver) {
+        // Enemy position is used for collision detection and to continuing moving enemies ONLY before player wins game.
+        if (!gameWon) {
             // Check for enemy and player collision.
+            // Define four sides (outer limits) of current enemy and player space.
             const enemyTop = this.y, enemyLeft = this.x, enemyBottom = this.y + 75, enemyRight = this.x + 74;
             const playerTop = player.y + 63, playerLeft = player.x, playerBottom = player.y + 83, playerRight = player.x + 60;
 
+            // Check to see if player currently overlapping with enemy.
+            // If they do, restart game.
             if ((((playerTop >= enemyTop) && (playerTop <= enemyBottom)) || ((playerBottom >= enemyTop) && (playerBottom <= enemyBottom))) && (((playerRight <= enemyRight) && (playerRight >= enemyLeft)) || ((playerLeft <= enemyRight) && (playerLeft >= enemyLeft)))) {
-            
-                console.log("Player top is " + playerTop + " and player bottom is " + playerBottom);
-                console.log("Player left is " + playerLeft + " and player right is " + playerRight);
-                console.log("Enemy top is " + enemyTop + " and enemy bottom is " + enemyBottom);
-                console.log("Enemy left is " + enemyLeft + " and enemy right is " + enemyRight);
                 newGame();
             }
 
-            // You should multiply any movement by the dt parameter
-            // which will ensure the game runs at the same speed for
-            // all computers.
-        
+            // Move enemy forward in a way that is proportional to its speed level.
+            // If enemy reaches right side / end of screen, start back on left of screen again.
             if (this.x < 412) {
                 const movement = this.speed * dt;
                 this.x = this.x + movement;
             } else {
-                this.x = 0;
-                // if (this.y === 59) {
-                //     this.y = 225;
-                // } else if (this.y === 225) {
-                //     this.y = 142;
-                // } else {
-                //     this.y = 59;
-                // }
+                this.x = -74;
             }
         }
     }
@@ -71,11 +57,12 @@ class Player {
     }
 
     update() {
-        // If player reaches water, game over! 
+        // If player reaches water, game is won. 
         if (this.y < 43) {
-            if (gameOver === false) {
+            if (gameWon === false) {
+                // Display game's win screen which asks if player wants to play again.
                 endGameScreen.classList.remove("invisible");
-                gameOver = true;
+                gameWon = true;
             }
         }
     }
@@ -87,9 +74,9 @@ class Player {
 
     handleInput(keyPressed) {
 
-        // Only allow player movements while not game over
+        // Only allow player movements before game is won.
 
-        if (!gameOver) {
+        if (!gameWon) {
             if (keyPressed === 'up' && this.y > -40) {
                 this.y = this.y - 83;
             } else if (keyPressed === 'down' && this.y < 375) {
@@ -108,14 +95,16 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 let allEnemies = [];
-allEnemies.push(new Enemy(20, 59, 250));
-allEnemies.push(new Enemy(40, 225, 150));
-allEnemies.push(new Enemy(0, 225, 200));
-allEnemies.push(new Enemy(309, 142, 100));
+allEnemies.push(new Enemy(20, 59, 350));
+allEnemies.push(new Enemy(0, 59, 200));
+allEnemies.push(new Enemy(309, 142, 150));
+allEnemies.push(new Enemy(150, 142, 150));
+allEnemies.push(new Enemy(40, 225, 200));
+allEnemies.push(new Enemy(0, 225, 250));
+
 
 // Place the player object in a variable called player
 const player = new Player();
-
 
 
 // This listens for key presses and sends the keys to your
@@ -150,6 +139,5 @@ endGameScreen.addEventListener('click', function (){
 function newGame() {
     player.x = 200;
     player.y = 375;
-    // endGameScreen.classList.add("invisible");
-    gameOver = false;
+    gameWon = false;
 }

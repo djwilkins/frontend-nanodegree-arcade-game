@@ -3,7 +3,7 @@ body {
 }
 
 /*
- * Styles for the Game Stats Modal
+ * Styles for the Game Modal
  */
 
  .invisible {
@@ -46,8 +46,7 @@ body {
 
 
  .modal-stats,
- .modal-question,
- .modal-stars {
+ .modal-question {
     color: #ffffff;
     font-size: 28px;
     text-align: center;
@@ -82,12 +81,6 @@ body {
     color: orange;
 }
 
-.you-won,
-.stats {
+.you-won {
     font-style: italic;
-}
-
-.modal-stars {
-    list-style: none;
-    padding-left: 0;
 }
