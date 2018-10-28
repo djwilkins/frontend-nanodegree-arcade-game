@@ -1,3 +1,93 @@
 body {
     text-align: center;
 }
+
+/*
+ * Styles for the Game Stats Modal
+ */
+
+ .invisible {
+    visibility: hidden;
+}
+
+ .modal-close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 65px;
+    color: white;
+    margin-right: 25px;
+}
+
+.modal-close:hover {
+    color: black;
+}
+
+.modal-close:active {
+    color: orange;
+}
+
+ .modal {
+    position: fixed;
+    top: 325px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2e22d8 0%;
+    opacity: 0.9;
+    border-radius: 10px;
+    width: 255px;
+    /* height: 61%; */
+    height: 540px;
+    margin-top: 25%:
+    font-size: 28px;
+ }
+
+
+ .modal-stats,
+ .modal-question,
+ .modal-stars {
+    color: #ffffff;
+    font-size: 28px;
+    text-align: center;
+ }
+
+ .modal-stats {
+    margin-top: 60px;
+ }
+
+.modal-hr {
+    margin-top: 70px;
+}
+
+ .modal-button {
+    background: #2e3d49;
+    padding: 15px 32px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 28px;
+    color: #aa7ecd;
+    width: 100%;
+    margin-top: 5px;
+    cursor: pointer;
+ }
+
+ .modal-button:hover {
+     color: white;
+ }
+
+ .modal-button:active {
+    color: orange;
+}
+
+.you-won,
+.stats {
+    font-style: italic;
+}
+
+.modal-stars {
+    list-style: none;
+    padding-left: 0;
+}
