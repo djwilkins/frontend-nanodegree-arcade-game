@@ -1,6 +1,11 @@
-frontend-nanodegree-arcade-game
-===============================
-
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
-
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+# Memory Game ("Concentration")
+#### BACKGROUND
+* This is my version of the "Classic Arcade Game Clone" project from Udacity's Front-End Web Developer Nanodegree.
+* While a html5 canvas game engine wrapper script was provided to students, along with the visual elements, I used JS ES6 object-oriented programming to bring the player and enemy characters to life and enforce logic for the game including speed of enemy characters, limiting player and enemy characters to the game board and logic for character dying, winning the game and optionally playing again.
+#### INSTALLATION
+To run the application locally, simply do the following:
+1. Download the project files into a folder anywhere on your machine.
+2. Open the bugger.html file in that folder in a modern web browser (like Chrome or Firefox).
+3. Play the game!
+#### DEMO
+http://djwilkins.net/bugger.html

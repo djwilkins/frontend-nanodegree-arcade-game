@@ -18,12 +18,14 @@ class Enemy {
         // Enemy position is used for collision detection and to continuing moving enemies ONLY before player wins game.
         if (!gameWon) {
             // Check for enemy and player collision.
-            // Define four sides (outer limits) of current enemy and player space.
+            // Define four sides (outer limits) of current enemy and player space occupency.
             const enemyTop = this.y, enemyLeft = this.x, enemyBottom = this.y + 75, enemyRight = this.x + 74;
             const playerTop = player.y + 63, playerLeft = player.x, playerBottom = player.y + 83, playerRight = player.x + 60;
 
-            // Check to see if player currently overlapping with enemy.
-            // If they do, restart game.
+            // Check to see if player currently overlapping with enemy in space.
+            // It determines this specifically by checking to see that either the player character's top OR bottom is between the enemy's top and bottom.
+            // AND that either the player's left or right is between the enemy's left and right. 
+            // If they player character and enemy character are overlapping, restart game.
             if ((((playerTop >= enemyTop) && (playerTop <= enemyBottom)) || ((playerBottom >= enemyTop) && (playerBottom <= enemyBottom))) && (((playerRight <= enemyRight) && (playerRight >= enemyLeft)) || ((playerLeft <= enemyRight) && (playerLeft >= enemyLeft)))) {
                 newGame();
             }
@@ -45,9 +47,7 @@ class Enemy {
     }
 }
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// Player class much like enemy but takes player movement input and does not manage collision detection.
 
 class Player {
     constructor() {
@@ -57,11 +57,11 @@ class Player {
     }
 
     update() {
-        // If player reaches water, game is won. 
+        // If player reaches water, game is won.
         if (this.y < 43) {
             if (gameWon === false) {
                 // Display game's win screen which asks if player wants to play again.
-                endGameScreen.classList.remove("invisible");
+                endGameScreen.classList.remove('invisible');
                 gameWon = true;
             }
         }
@@ -85,7 +85,7 @@ class Player {
                 this.x = this.x - 101;
             } else if (keyPressed === 'right' && this.x < 400) {
                 this.x = this.x + 101;
-            }  
+            }
             console.log('Players x is ' + this.x + ' and y is ' + this.y);
         }
     }
@@ -110,7 +110,7 @@ const player = new Player();
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+    const allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
@@ -120,7 +120,7 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-// Create An Event Listener on the div with Modal / Game End Screen "Play again" question.
+// Create An Event Listener on the div with Modal / Game End Screen 'Play again' question.
 
 endGameScreen.addEventListener('click', function (){
     // If button clicked on end screen model
@@ -131,11 +131,11 @@ endGameScreen.addEventListener('click', function (){
             newGame();
         }
         // close out modal after either button pushed.
-        endGameScreen.classList.add("invisible");
+        endGameScreen.classList.add('invisible');
     }
 });
 
-// The newGame function resets the game board in every regard and is called from multiple places/
+// The newGame function resets the game board in every regard and is called from multiple places.
 function newGame() {
     player.x = 200;
     player.y = 375;
