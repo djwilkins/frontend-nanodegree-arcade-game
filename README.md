@@ -1,4 +1,4 @@
-# Memory Game ("Concentration")
+# Bugger (Classic Arcade Game Clone)
 #### BACKGROUND
 * This is my version of the "Classic Arcade Game Clone" project from Udacity's Front-End Web Developer Nanodegree.
 * While a html5 canvas game engine wrapper script was provided to students, along with the visual elements, I used JS ES6 object-oriented programming to bring the player and enemy characters to life and enforce logic for the game including speed of enemy characters, limiting player and enemy characters to the game board and logic for character dying, winning the game and optionally playing again.
